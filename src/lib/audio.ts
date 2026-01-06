@@ -41,12 +41,13 @@ export class BreathAudio {
 	}
 
 	playTick(): void {
-		this.createTone(800, 0.05, 'sine');
+		// カウントダウン中: 予報音「プ」（440Hz、A4）
+		this.createTone(440, 0.05, 'sine');
 	}
 
 	playPhaseChange(phase: 'inhale' | 'hold' | 'exhale'): void {
-		// すべてのフェーズ切り替え時に吐くの音を鳴らす
-		this.createTone(400, 0.15, 'sine');
+		// フェーズ切り替え時: 正報音「ピーン」（880Hz、A5）
+		this.createTone(880, 1.0, 'sine');
 	}
 
 	destroy(): void {

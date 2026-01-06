@@ -74,13 +74,10 @@ export class BreathTimer {
 			return;
 		}
 
-		if (this.onTick) {
-			this.onTick();
-		}
-
 		this.context.remainingSeconds--;
 
 		if (this.context.remainingSeconds <= 0) {
+			// フェーズ切り替え時はtick音を鳴らさない
 			let nextPhase = this.getNextPhase(this.context.currentPhase);
 
 			// holdSecondsが0の場合はholdフェーズをスキップ
@@ -100,6 +97,10 @@ export class BreathTimer {
 
 			this.startPhase(nextPhase, this.context.preset!);
 		} else {
+			// 通常のカウントダウン時のみtick音を鳴らす
+			if (this.onTick) {
+				this.onTick();
+			}
 			this.notifyUpdate();
 		}
 	}
