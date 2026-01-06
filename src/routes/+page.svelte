@@ -1,6 +1,5 @@
 <script lang="ts">
 import { onMount, onDestroy } from 'svelte';
-	import type { PageData } from './$types';
 	import { presets } from '$lib/presets';
 import { t, localeStore, type Locale } from '$lib/i18n';
 	import { BreathTimer } from '$lib/timer';
@@ -10,8 +9,6 @@ import { t, localeStore, type Locale } from '$lib/i18n';
 	import PresetSelector from '$lib/components/PresetSelector.svelte';
 	import TimerDisplay from '$lib/components/TimerDisplay.svelte';
 	import ControlButtons from '$lib/components/ControlButtons.svelte';
-
-	export let data: PageData;
 
 	let selectedPreset: BreathPreset | null = null;
 	let selectedCycles: number = 5;
@@ -51,7 +48,7 @@ onMount(() => {
 
 		timer.setOnPhaseChange((phase) => {
 			lastPhase = phase;
-			audio.playPhaseChange();
+			audio.playPhaseChange(phase);
 		});
 
 	timer.setOnTick(() => {

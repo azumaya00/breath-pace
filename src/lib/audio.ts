@@ -44,12 +44,9 @@ export class BreathAudio {
 		this.createTone(800, 0.05, 'sine');
 	}
 
-	playPhaseChange(): void {
-		this.createTone(600, 0.1, 'sine');
-		// 短い間隔で2回鳴らす
-		setTimeout(() => {
-			this.createTone(600, 0.1, 'sine');
-		}, 50);
+	playPhaseChange(phase: 'inhale' | 'hold' | 'exhale'): void {
+		// すべてのフェーズ切り替え時に吐くの音を鳴らす
+		this.createTone(400, 0.15, 'sine');
 	}
 
 	destroy(): void {
