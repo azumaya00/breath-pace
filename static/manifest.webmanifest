@@ -1,0 +1,11 @@
+{
+	"name": "Breathline",
+	"short_name": "Breathline",
+	"description": "呼吸のリズムを整えるシンプルな呼吸カウンター",
+	"start_url": "/",
+	"display": "standalone",
+	"background_color": "#0f172a",
+	"theme_color": "#0f172a",
+	"icons": []
+}
+
