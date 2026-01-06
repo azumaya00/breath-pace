@@ -1,4 +1,134 @@
-# Breath Pace
+# Breathline
+
+A personal, non-medical breathing pacemaker web application.
+
+## ⚠️ Important Notice
+
+**This application is a personal tool for non-medical purposes.**
+
+- It is not intended for medical treatment or therapy
+- Use at your own discretion
+- If you have health issues or medical conditions, please consult a doctor before use
+- The timer will stop when the screen goes to sleep
+
+## Features
+
+- **7 Breathing Presets**
+  - **Neiyang Gong Series**
+    - Neiyang Gong - Basic (4-4-4)
+    - Neiyang Gong - Deep (7-7-7)
+  - **Daily Adjustment Series**
+    - Daily Adjustment (4-0-6)
+    - Evening Adjustment (4-0-8)
+    - Neutral (5-0-5)
+    - Morning Adjustment (6-0-4)
+    - Tension Release (3-0-6)
+
+- **Intuitive UI**
+  - Preset selection based on condition and purpose
+  - Real-time phase display
+  - Remaining seconds and cycle count display
+  - Cycle selection and duration display
+  - Back button to return to preset selection
+
+- **Audio Feedback**
+  - Tick sound every second
+  - Phase transition sound
+
+- **Internationalization**
+  - Japanese / English
+  - Language toggle button
+  - Preference is saved and persists across sessions
+  - **Initial language is automatically detected from your device settings**
+
+- **Theme Switching**
+  - Light / Dark / System (automatic)
+  - Theme toggle button
+  - Preference is saved and persists across sessions
+  - **Initial theme follows your device's color scheme preference**
+
+- **Sharing**
+  - Web Share API support (mobile)
+  - Copy link fallback
+  - Share to X (Twitter)
+
+## Technical Stack
+
+- **SvelteKit** - Framework
+- **TypeScript** - Type safety
+- **Vite** - Build tool
+- **Vitest** - Testing framework
+- **Web Audio API** - Audio generation
+
+## Development
+
+### Setup
+
+```bash
+pnpm install
+```
+
+### Start Development Server
+
+```bash
+pnpm dev
+```
+
+### Build
+
+```bash
+pnpm build
+```
+
+### Preview
+
+```bash
+pnpm preview
+```
+
+### Test
+
+```bash
+pnpm test
+```
+
+### Type Check
+
+```bash
+pnpm check
+```
+
+## Project Structure
+
+```
+src/
+├── lib/
+│   ├── components/     # UI components
+│   ├── types.ts        # Type definitions
+│   ├── presets.ts      # Preset data
+│   ├── timer.ts        # Timer logic
+│   ├── audio.ts        # Audio generation
+│   ├── i18n.ts         # Internationalization
+│   └── theme.ts        # Theme management
+├── routes/
+│   └── +page.svelte    # Main page
+└── app.css             # Global styles
+```
+
+## Design Philosophy
+
+- **State Management**: Clear state machine for state management
+- **Testability**: Separation of logic and UI for testable design
+- **Type Safety**: TypeScript type definitions
+- **Accessibility**: Semantic HTML and appropriate contrast
+
+## License
+
+See LICENSE file.
+
+---
+
+# Breathline
 
 個人用・非医療目的の呼吸ペースメーカー Web アプリケーション
 
@@ -39,11 +169,18 @@
   - 日本語 / 英語
   - 言語切替ボタンで切り替え可能
   - 選択は保存され、次回アクセス時も維持
+  - **初期言語はデバイスの言語設定に自動的に合わせます**
 
 - **テーマ切替**
   - ライト / ダーク / システム（自動）
   - テーマ切替ボタンで切り替え可能
   - 選択は保存され、次回アクセス時も維持
+  - **初期テーマはデバイスのカラースキーム設定に従います**
+
+- **シェア機能**
+  - Web Share API対応（モバイル）
+  - リンクコピーのフォールバック
+  - X（Twitter）へのシェア
 
 ## 技術スタック
 
@@ -101,7 +238,8 @@ src/
 │   ├── presets.ts      # プリセットデータ
 │   ├── timer.ts        # タイマーロジック
 │   ├── audio.ts        # 音声生成
-│   └── i18n.ts         # 多言語対応
+│   ├── i18n.ts         # 多言語対応
+│   └── theme.ts        # テーマ管理
 ├── routes/
 │   └── +page.svelte    # メインページ
 └── app.css             # グローバルスタイル

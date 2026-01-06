@@ -1,16 +1,11 @@
 <script lang="ts">
 	import type { TimerContext } from '$lib/types';
-	import { getTranslation, type Locale } from '$lib/i18n';
+	import { t } from '$lib/i18n';
 
 	export let timerContext: TimerContext;
-	export let locale: Locale;
-
-	function t(key: string): string {
-		return getTranslation(locale, key);
-	}
 
 	function getPhaseLabel(phase: string): string {
-		return t(`ui.phase.${phase}`);
+		return $t(`ui.phase.${phase}`);
 	}
 </script>
 
@@ -18,11 +13,11 @@
 	<div class="phase-indicator">
 		<div class="phase-label">{getPhaseLabel(timerContext.currentPhase)}</div>
 		<div class="time-display">{timerContext.remainingSeconds}</div>
-		<div class="time-unit">{t('ui.seconds')}</div>
+		<div class="time-unit">{$t('ui.seconds')}</div>
 	</div>
 
 	<div class="cycle-info">
-		{timerContext.currentCycle} {t('ui.of')} {timerContext.maxCycles} {t('ui.cycle')}
+		{timerContext.currentCycle} {$t('ui.of')} {timerContext.maxCycles} {$t('ui.cycle')}
 	</div>
 </div>
 

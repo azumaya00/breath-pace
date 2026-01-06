@@ -1,24 +1,14 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
 	import { getBuildYear } from '$lib/utils/build-date';
-	import { getTranslation, getStoredLocale, type Locale } from '$lib/i18n';
+	import { t } from '$lib/i18n';
 
-	let locale: Locale = 'ja';
 	let buildYear = getBuildYear();
-
-	onMount(() => {
-		locale = getStoredLocale();
-	});
-
-	function t(key: string): string {
-		return getTranslation(locale, key);
-	}
 </script>
 
 <footer class="app-footer">
 	<div class="footer-content">
 		<p>
-			© Copyright {buildYear} {t('ui.appName')}. {t('ui.footer.allRightsReserved')}
+			© Copyright {buildYear} {$t('ui.appName')}. {$t('ui.footer.allRightsReserved')}
 		</p>
 	</div>
 </footer>
@@ -26,7 +16,7 @@
 <style>
 	.app-footer {
 		border-top: 1px solid var(--color-border);
-		background: var(--color-bg);
+		background: var(--color-footer-bg);
 		height: var(--footer-height);
 		position: fixed;
 		bottom: 0;

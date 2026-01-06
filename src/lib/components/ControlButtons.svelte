@@ -1,10 +1,9 @@
 <script lang="ts">
 	import { createEventDispatcher } from 'svelte';
 	import type { TimerState } from '$lib/types';
-	import { getTranslation, type Locale } from '$lib/i18n';
+	import { t } from '$lib/i18n';
 
 	export let state: TimerState;
-	export let locale: Locale;
 
 	const dispatch = createEventDispatcher<{
 		start: void;
@@ -13,37 +12,33 @@
 		reset: void;
 		back: void;
 	}>();
-
-	function t(key: string): string {
-		return getTranslation(locale, key);
-	}
 </script>
 
 <div class="control-buttons">
 	<button class="btn btn-outline" on:click={() => dispatch('back')} type="button">
-		{t('ui.back')}
+		{$t('ui.back')}
 	</button>
 	{#if state === 'idle'}
 		<button class="btn btn-primary" on:click={() => dispatch('start')} type="button">
-			{t('ui.start')}
+			{$t('ui.start')}
 		</button>
 	{:else if state === 'running'}
 		<button class="btn btn-secondary" on:click={() => dispatch('pause')} type="button">
-			{t('ui.pause')}
+			{$t('ui.pause')}
 		</button>
 		<button class="btn btn-outline" on:click={() => dispatch('reset')} type="button">
-			{t('ui.reset')}
+			{$t('ui.reset')}
 		</button>
 	{:else if state === 'paused'}
 		<button class="btn btn-primary" on:click={() => dispatch('resume')} type="button">
-			{t('ui.resume')}
+			{$t('ui.resume')}
 		</button>
 		<button class="btn btn-outline" on:click={() => dispatch('reset')} type="button">
-			{t('ui.reset')}
+			{$t('ui.reset')}
 		</button>
 	{:else if state === 'completed'}
 		<button class="btn btn-outline" on:click={() => dispatch('reset')} type="button">
-			{t('ui.reset')}
+			{$t('ui.reset')}
 		</button>
 	{/if}
 </div>

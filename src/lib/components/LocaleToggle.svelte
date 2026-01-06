@@ -1,29 +1,14 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
-	import { createEventDispatcher } from 'svelte';
-	import { getStoredLocale, setStoredLocale, getTranslation, type Locale } from '$lib/i18n';
-
-	export let locale: Locale = 'ja';
-
-	let currentLocale: Locale = 'ja';
-	const dispatch = createEventDispatcher<{ change: Locale }>();
-
-	onMount(() => {
-		currentLocale = getStoredLocale();
-	});
+	import { localeStore, setLocale, t } from '$lib/i18n';
 
 	function toggleLocale() {
-		currentLocale = currentLocale === 'ja' ? 'en' : 'ja';
-		setStoredLocale(currentLocale);
-		dispatch('change', currentLocale);
-	}
-
-	function t(key: string): string {
-		return getTranslation(locale, key);
+		const current = $localeStore;
+		const next = current === 'ja' ? 'en' : 'ja';
+		setLocale(next);
 	}
 
 	function getAriaLabel(): string {
-		return currentLocale === 'ja' ? t('ui.locale.ja') : t('ui.locale.en');
+		return $localeStore === 'ja' ? $t('ui.locale.ja') : $t('ui.locale.en');
 	}
 </script>
 
@@ -35,7 +20,7 @@
 	title={getAriaLabel()}
 >
 	<span class="flag-emoji">
-		{#if currentLocale === 'ja'}
+		{#if $localeStore === 'ja'}
 			🇯🇵
 		{:else}
 			🇺🇸

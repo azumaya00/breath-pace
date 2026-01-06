@@ -8,31 +8,41 @@
 	--color-success: #10b981;
 	--color-warning: #f59e0b;
 	--color-error: #ef4444;
+	--font-brand: 'Poiret One', system-ui, -apple-system, 'Segoe UI', sans-serif;
+	--font-ui: 'Noto Sans JP', system-ui, -apple-system, 'Segoe UI', sans-serif;
+	--header-height: 48px;
+	--footer-height: 52px;
+	--color-header-bg: #f3f6fb;
+	--color-footer-bg: #f3f6fb;
 }
 
 [data-theme='dark'] {
 	--color-bg: #0f172a;
 	--color-text: #f1f5f9;
-	--color-primary: #3b82f6;
+	--color-primary: #93c5fd;
 	--color-secondary: #94a3b8;
 	--color-border: #334155;
 	--color-surface: #1e293b;
 	--color-success: #34d399;
 	--color-warning: #fbbf24;
 	--color-error: #f87171;
+	--color-header-bg: #111827;
+	--color-footer-bg: #111827;
 }
 
 @media (prefers-color-scheme: dark) {
 	:root:not([data-theme]) {
 		--color-bg: #0f172a;
 		--color-text: #f1f5f9;
-		--color-primary: #3b82f6;
+		--color-primary: #93c5fd;
 		--color-secondary: #94a3b8;
 		--color-border: #334155;
 		--color-surface: #1e293b;
 		--color-success: #34d399;
 		--color-warning: #fbbf24;
 		--color-error: #f87171;
+		--color-header-bg: #111827;
+		--color-footer-bg: #111827;
 	}
 }
 
@@ -48,8 +58,7 @@ body {
 }
 
 body {
-	font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell,
-		sans-serif;
+	font-family: var(--font-ui);
 	background-color: var(--color-bg);
 	color: var(--color-text);
 	line-height: 1.6;

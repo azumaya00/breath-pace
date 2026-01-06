@@ -18,8 +18,8 @@ describe('i18n', () => {
 	});
 
 	it('should get nested translation', () => {
-		const result = getTranslation('ja', 'preset.emergency.name');
-		expect(result).toBe('非常用（7-7-7）');
+		const result = getTranslation('ja', 'preset.neiyang_deep.name');
+		expect(result).toBe('内養功・深める');
 	});
 
 	it('should get locale from browser (mock test)', () => {

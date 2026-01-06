@@ -1,16 +1,11 @@
 <script lang="ts">
 	import { createEventDispatcher } from 'svelte';
 	import type { BreathPreset } from '$lib/types';
-	import { getTranslation, type Locale } from '$lib/i18n';
+	import { t } from '$lib/i18n';
 
 	export let presets: BreathPreset[];
-	export let locale: Locale;
 
 	const dispatch = createEventDispatcher<{ select: BreathPreset }>();
-
-	function t(key: string): string {
-		return getTranslation(locale, key);
-	}
 
 	function getPresetLabel(preset: BreathPreset): string {
 		const inhale = preset.inhaleSeconds;
@@ -24,12 +19,12 @@
 </script>
 
 <div class="preset-selector">
-	<h2>{t('ui.selectPreset')}</h2>
-	<p class="format-help">{t('ui.presetFormatHelp')}</p>
+	<h2>{$t('ui.selectPreset')}</h2>
+	<p class="format-help">{$t('ui.presetFormatHelp')}</p>
 
 	{#if neiyangPresets.length > 0}
 		<div class="preset-group">
-			<h3 class="group-title">内養功系</h3>
+			<h3 class="group-title">{$t('ui.presetGroup.neiyang')}</h3>
 			<div class="preset-grid">
 				{#each neiyangPresets as preset}
 					<button
@@ -37,7 +32,7 @@
 						on:click={() => dispatch('select', preset)}
 						type="button"
 					>
-						<div class="preset-name">{t(preset.i18nKey.name)}</div>
+						<div class="preset-name">{$t(preset.i18nKey.name)}</div>
 						<div class="preset-label">{getPresetLabel(preset)}</div>
 					</button>
 				{/each}
@@ -47,7 +42,7 @@
 
 	{#if dailyPresets.length > 0}
 		<div class="preset-group">
-			<h3 class="group-title">日常調整系</h3>
+			<h3 class="group-title">{$t('ui.presetGroup.daily')}</h3>
 			<div class="preset-grid">
 				{#each dailyPresets as preset}
 					<button
@@ -55,7 +50,7 @@
 						on:click={() => dispatch('select', preset)}
 						type="button"
 					>
-						<div class="preset-name">{t(preset.i18nKey.name)}</div>
+						<div class="preset-name">{$t(preset.i18nKey.name)}</div>
 						<div class="preset-label">{getPresetLabel(preset)}</div>
 					</button>
 				{/each}

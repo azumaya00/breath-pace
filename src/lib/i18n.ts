@@ -1,6 +1,8 @@
+import { writable, get, derived } from 'svelte/store';
+
 export type Locale = 'ja' | 'en';
 
-const LOCALE_STORAGE_KEY = 'breath-pace-locale';
+export const LOCALE_STORAGE_KEY = 'breath-pace-locale';
 
 export interface Translations {
 	[key: string]: string | Translations;
@@ -78,6 +80,11 @@ const translations: Record<Locale, Translations> = {
 			durationAbout: '約',
 			durationMinutes: '分',
 			durationSeconds: '秒',
+			share: 'シェア',
+			copyLink: 'リンクをコピー',
+			shareToX: 'Xでシェア',
+			shareDescription: '呼吸のリズムを整えるシンプルな呼吸カウンター',
+			copySuccess: 'リンクをコピーしました',
 			theme: {
 				light: 'ライトモード',
 				dark: 'ダークモード',
@@ -87,7 +94,11 @@ const translations: Record<Locale, Translations> = {
 				ja: '日本語',
 				en: 'English'
 			},
-			appName: 'Breath Pace',
+			appName: 'Breathline',
+			presetGroup: {
+				neiyang: '内養功系',
+				daily: '日常調整系'
+			},
 			footer: {
 				allRightsReserved: 'All Rights Reserved'
 			}
@@ -164,6 +175,11 @@ const translations: Record<Locale, Translations> = {
 			durationAbout: 'About',
 			durationMinutes: 'min',
 			durationSeconds: 'sec',
+			share: 'Share',
+			copyLink: 'Copy link',
+			shareToX: 'Share to X',
+			shareDescription: 'A simple breathing counter to steady your rhythm.',
+			copySuccess: 'Link copied',
 			theme: {
 				light: 'Light mode',
 				dark: 'Dark mode',
@@ -173,7 +189,11 @@ const translations: Record<Locale, Translations> = {
 				ja: 'Japanese',
 				en: 'English'
 			},
-			appName: 'Breath Pace',
+			appName: 'Breathline',
+			presetGroup: {
+				neiyang: 'Neiyang Gong',
+				daily: 'Daily Adjustment'
+			},
 			footer: {
 				allRightsReserved: 'All Rights Reserved'
 			}
@@ -191,11 +211,20 @@ export function getTranslation(locale: Locale, key: string): string {
 		}
 		value = value[k];
 		if (value === undefined) {
+			if (process.env.NODE_ENV !== 'production') {
+				console.warn(`[i18n] missing key "${key}" for locale "${locale}"`);
+			}
 			return key;
 		}
 	}
 
-	return typeof value === 'string' ? value : key;
+	if (typeof value === 'string') {
+		return value;
+	}
+	if (process.env.NODE_ENV !== 'production') {
+		console.warn(`[i18n] missing key "${key}" for locale "${locale}"`);
+	}
+	return key;
 }
 
 export function getStoredLocale(): Locale {
@@ -216,14 +245,29 @@ export function setStoredLocale(locale: Locale): void {
 	localStorage.setItem(LOCALE_STORAGE_KEY, locale);
 }
 
-export function getLocale(): Locale {
+export function detectLocale(): Locale {
 	if (typeof window === 'undefined') {
 		return 'ja';
 	}
 	const stored = getStoredLocale();
-	if (stored !== 'ja') {
-		return stored;
-	}
+	if (stored) return stored;
 	const lang = navigator.language.toLowerCase();
 	return lang.startsWith('en') ? 'en' : 'ja';
 }
+
+// locale store as single source of truth
+const initialLocale: Locale = detectLocale();
+export const localeStore = writable<Locale>(initialLocale);
+
+export function setLocale(locale: Locale): void {
+	setStoredLocale(locale);
+	localeStore.set(locale);
+}
+
+export function getLocale(): Locale {
+	return get(localeStore);
+}
+
+// Reactive translation function store
+// Usage: import { t } from '$lib/i18n'; then use {$t('ui.key')} in template or $t('ui.key') in script
+export const t = derived(localeStore, ($locale) => (key: string) => getTranslation($locale, key));

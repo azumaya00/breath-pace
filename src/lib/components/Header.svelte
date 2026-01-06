@@ -1,36 +1,30 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import { getStoredLocale, getLocale, type Locale } from '$lib/i18n';
-	import { getTranslation } from '$lib/i18n';
+	import { t } from '$lib/i18n';
 	import { getStoredTheme, applyTheme } from '$lib/theme';
 	import ThemeToggle from './ThemeToggle.svelte';
 	import LocaleToggle from './LocaleToggle.svelte';
 
-	let locale: Locale = 'ja';
-	let localeToggleKey = 0;
+	const HOME_RESET_EVENT = 'breathline:reset';
 
 	onMount(() => {
-		locale = getStoredLocale();
 		const theme = getStoredTheme();
 		applyTheme(theme);
 	});
 
-	function handleLocaleChange(event: CustomEvent<Locale>) {
-		locale = event.detail;
-		localeToggleKey++;
-	}
-
-	function t(key: string): string {
-		return getTranslation(locale, key);
+	function handleHomeClick() {
+		if (typeof window !== 'undefined') {
+			window.dispatchEvent(new CustomEvent(HOME_RESET_EVENT));
+		}
 	}
 </script>
 
 <header class="app-header">
 	<div class="header-content">
-		<h1 class="app-title">{t('ui.appName')}</h1>
+	<a class="app-title" href="/" on:click|preventDefault={handleHomeClick}>{$t('ui.appName')}</a>
 		<div class="header-controls">
-			<ThemeToggle {locale} />
-			<LocaleToggle key={localeToggleKey} {locale} on:change={handleLocaleChange} />
+			<ThemeToggle />
+			<LocaleToggle />
 		</div>
 	</div>
 </header>
@@ -38,7 +32,7 @@
 <style>
 	.app-header {
 		border-bottom: 1px solid var(--color-border);
-		background: var(--color-bg);
+		background: var(--color-header-bg);
 		height: var(--header-height);
 		position: sticky;
 		top: 0;
@@ -60,11 +54,16 @@
 	}
 
 	.app-title {
-		font-size: 1.25rem;
-		font-weight: 700;
+		font-family: var(--font-brand);
+		font-size: 1.5rem;
+		font-weight: 400;
 		color: var(--color-primary);
 		margin: 0;
-		line-height: 1;
+		line-height: 1.2;
+		letter-spacing: 0.05em;
+		text-decoration: none;
+		display: inline-flex;
+		align-items: center;
 	}
 
 	.header-controls {
@@ -75,7 +74,7 @@
 
 	@media (max-width: 640px) {
 		.app-title {
-			font-size: 1.1rem;
+			font-size: 1.25rem;
 		}
 
 		.header-content {

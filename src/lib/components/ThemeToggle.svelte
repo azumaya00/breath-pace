@@ -1,9 +1,7 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import { getStoredTheme, setStoredTheme, applyTheme, getEffectiveTheme, type Theme } from '$lib/theme';
-	import { getTranslation, type Locale } from '$lib/i18n';
-
-	export let locale: Locale = 'ja';
+	import { t } from '$lib/i18n';
 
 	let currentTheme: Theme = 'system';
 	let effectiveTheme: 'light' | 'dark' = 'light';
@@ -22,17 +20,13 @@
 		applyTheme(currentTheme);
 	}
 
-	function t(key: string): string {
-		return getTranslation(locale, key);
-	}
-
 	function getAriaLabel(): string {
 		if (currentTheme === 'light') {
-			return t('ui.theme.light');
+			return $t('ui.theme.light');
 		} else if (currentTheme === 'dark') {
-			return t('ui.theme.dark');
+			return $t('ui.theme.dark');
 		} else {
-			return t('ui.theme.system');
+			return $t('ui.theme.system');
 		}
 	}
 

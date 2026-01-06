@@ -2,7 +2,7 @@ import type { Phase, TimerContext, TimerState, BreathPreset } from './types';
 
 export class BreathTimer {
 	private context: TimerContext;
-	private intervalId: number | null = null;
+	private intervalId: ReturnType<typeof setInterval> | null = null;
 	private onUpdate: ((context: TimerContext) => void) | null = null;
 	private onPhaseChange: ((phase: Phase) => void) | null = null;
 	private onTick: (() => void) | null = null;
@@ -116,7 +116,7 @@ export class BreathTimer {
 
 		this.startPhase('inhale', preset);
 
-		this.intervalId = window.setInterval(() => {
+		this.intervalId = setInterval(() => {
 			this.tick();
 		}, 1000);
 	}
@@ -128,7 +128,7 @@ export class BreathTimer {
 
 		this.context.state = 'paused';
 		if (this.intervalId !== null) {
-			window.clearInterval(this.intervalId);
+			clearInterval(this.intervalId);
 			this.intervalId = null;
 		}
 		this.notifyUpdate();
@@ -140,7 +140,7 @@ export class BreathTimer {
 		}
 
 		this.context.state = 'running';
-		this.intervalId = window.setInterval(() => {
+		this.intervalId = setInterval(() => {
 			this.tick();
 		}, 1000);
 		this.notifyUpdate();
@@ -148,7 +148,7 @@ export class BreathTimer {
 
 	reset(): void {
 		if (this.intervalId !== null) {
-			window.clearInterval(this.intervalId);
+			clearInterval(this.intervalId);
 			this.intervalId = null;
 		}
 
@@ -165,7 +165,7 @@ export class BreathTimer {
 
 	private complete(): void {
 		if (this.intervalId !== null) {
-			window.clearInterval(this.intervalId);
+			clearInterval(this.intervalId);
 			this.intervalId = null;
 		}
 
@@ -179,7 +179,7 @@ export class BreathTimer {
 
 	destroy(): void {
 		if (this.intervalId !== null) {
-			window.clearInterval(this.intervalId);
+			clearInterval(this.intervalId);
 			this.intervalId = null;
 		}
 	}
