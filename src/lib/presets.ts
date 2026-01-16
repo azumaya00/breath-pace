@@ -26,51 +26,39 @@ export const presets: BreathPreset[] = [
 		}
 	},
 	{
-		id: 'daily',
-		inhaleSeconds: 4,
-		holdSeconds: 0,
-		exhaleSeconds: 6,
-		category: 'daily',
-		i18nKey: {
-			name: 'preset.daily.name',
-			description: 'preset.daily.description',
-			note: 'preset.daily.note'
-		}
-	},
-	{
-		id: 'night',
-		inhaleSeconds: 4,
-		holdSeconds: 0,
-		exhaleSeconds: 8,
-		category: 'daily',
-		i18nKey: {
-			name: 'preset.night.name',
-			description: 'preset.night.description',
-			note: 'preset.night.note'
-		}
-	},
-	{
-		id: 'neutral',
+		id: 'resonant',
 		inhaleSeconds: 5,
 		holdSeconds: 0,
 		exhaleSeconds: 5,
 		category: 'daily',
 		i18nKey: {
-			name: 'preset.neutral.name',
-			description: 'preset.neutral.description',
-			note: 'preset.neutral.note'
+			name: 'preset.resonant.name',
+			description: 'preset.resonant.description',
+			note: 'preset.resonant.note'
 		}
 	},
 	{
-		id: 'morning',
-		inhaleSeconds: 6,
+		id: 'relax_sleep',
+		inhaleSeconds: 4,
 		holdSeconds: 0,
-		exhaleSeconds: 4,
+		exhaleSeconds: 8,
 		category: 'daily',
 		i18nKey: {
-			name: 'preset.morning.name',
-			description: 'preset.morning.description',
-			note: 'preset.morning.note'
+			name: 'preset.relax_sleep.name',
+			description: 'preset.relax_sleep.description',
+			note: 'preset.relax_sleep.note'
+		}
+	},
+	{
+		id: 'stress_relief',
+		inhaleSeconds: 4,
+		holdSeconds: 4,
+		exhaleSeconds: 8,
+		category: 'daily',
+		i18nKey: {
+			name: 'preset.stress_relief.name',
+			description: 'preset.stress_relief.description',
+			note: 'preset.stress_relief.note'
 		}
 	},
 	{

@@ -3,10 +3,9 @@ export type Phase = 'inhale' | 'hold' | 'exhale';
 export type BreathPresetId =
 	| 'neiyang_basic'
 	| 'neiyang_deep'
-	| 'daily'
-	| 'night'
-	| 'neutral'
-	| 'morning'
+	| 'resonant'
+	| 'relax_sleep'
+	| 'stress_relief'
 	| 'release';
 
 export interface BreathPreset {

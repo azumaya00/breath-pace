@@ -23,28 +23,22 @@ const translations: Record<Locale, Translations> = {
 					'呼吸の感覚をさらに深めるための呼吸法です。呼吸が落ち着いている人が、より深い呼吸へと進む際に用いることがあります。無理に行うものではなく、体調に合わせて調整しながら実践します。',
 				note: '体調に合わせて秒数や回数を調整してください。呼吸が整っている状態で行うことが大切です。'
 			},
-			daily: {
-				name: '日常調整',
+			resonant: {
+				name: '共鳴呼吸',
 				description:
-					'日常的な呼吸の調整に用いる呼吸法です。吐く時間を長めにすることで、呼吸のリズムを整えることがあります。',
+					'心拍変動を最適化し、自律神経系を整える呼吸法です。1分間に約5.5回のリズムで行うことで、心身のバランスを整え、ストレス軽減や集中力向上に効果があるとされています。',
 				note: '数分から10分以上続けることを目安に、体調に合わせて調整してください。'
 			},
-			night: {
-				name: '夜の調整',
+			relax_sleep: {
+				name: 'リラックス・入眠補助',
 				description:
-					'就寝前の呼吸調整に用いることがあります。より長い吐く時間により、呼吸をゆっくりと整えます。',
+					'4-7-8呼吸法をベースにした、リラックスと入眠をサポートする呼吸法です。長めの呼気により副交感神経を活性化し、心身をリラックス状態に導きます。就寝前の実践に特に効果的です。',
 				note: '数分から10分以上続けることを目安に、体調に合わせて調整してください。'
 			},
-			neutral: {
-				name: 'ニュートラル',
+			stress_relief: {
+				name: 'ストレス軽減',
 				description:
-					'バランスの取れた呼吸法です。吸うと吐くを均等に行うことで、呼吸のリズムを整えます。',
-				note: '数分から10分以上続けることを目安に、体調に合わせて調整してください。'
-			},
-			morning: {
-				name: '朝の調整',
-				description:
-					'朝の呼吸調整に用いることがあります。吸う時間を長めにすることで、呼吸のリズムを整えます。',
+					'ストレスや不安を軽減するための呼吸法です。4-4-8のリズムで行うことで、心拍数を下げ、緊張を和らげ、心身のバランスを整えます。日常的なストレス管理や、緊張した場面での実践に適しています。',
 				note: '数分から10分以上続けることを目安に、体調に合わせて調整してください。'
 			},
 			release: {
@@ -118,28 +112,22 @@ const translations: Record<Locale, Translations> = {
 					'A breathing technique for deepening the sense of breath. Used by those with settled breathing to progress to deeper breathing. Not to be forced, but practiced with adjustments according to your condition.',
 				note: 'Adjust the duration and number of cycles according to your condition. It is important to practice when your breathing is settled.'
 			},
-			daily: {
-				name: 'Daily Adjustment',
+			resonant: {
+				name: 'Resonant Breathing',
 				description:
-					'A breathing technique for daily breath adjustment. By extending the exhale time, it helps regulate the breathing rhythm.',
+					'A breathing technique that optimizes heart rate variability and balances the autonomic nervous system. Practicing at approximately 5.5 breaths per minute helps balance mind and body, reducing stress and improving focus.',
 				note: 'Aim to practice for several minutes to 10 minutes or more, adjusting according to your condition.'
 			},
-			night: {
-				name: 'Evening Adjustment',
+			relax_sleep: {
+				name: 'Relaxation & Sleep Aid',
 				description:
-					'Sometimes used for pre-sleep breath adjustment. The longer exhale time helps slow and regulate breathing.',
+					'A breathing technique based on the 4-7-8 method, designed to support relaxation and sleep. The longer exhalation activates the parasympathetic nervous system, guiding the body into a relaxed state. Particularly effective when practiced before bedtime.',
 				note: 'Aim to practice for several minutes to 10 minutes or more, adjusting according to your condition.'
 			},
-			neutral: {
-				name: 'Neutral',
+			stress_relief: {
+				name: 'Stress Relief',
 				description:
-					'A balanced breathing technique. By inhaling and exhaling equally, it helps regulate the breathing rhythm.',
-				note: 'Aim to practice for several minutes to 10 minutes or more, adjusting according to your condition.'
-			},
-			morning: {
-				name: 'Morning Adjustment',
-				description:
-					'Sometimes used for morning breath adjustment. By extending the inhale time, it helps regulate the breathing rhythm.',
+					'A breathing technique for reducing stress and anxiety. Practicing with a 4-4-8 rhythm helps lower heart rate, ease tension, and restore balance to mind and body. Suitable for daily stress management and use in tense situations.',
 				note: 'Aim to practice for several minutes to 10 minutes or more, adjusting according to your condition.'
 			},
 			release: {
